@@ -1,0 +1,192 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background: black;
+  overflow-x: hidden;
+}
+section#nav {
+  background: #000;
+  color: #ffffff;
+  height: 100vh;
+  position: fixed;
+  top: 100px;
+  width: 200px;
+  transition: 0.4s;
+}
+#nav ul {
+  display: flex;
+  flex-direction: column;
+}
+#nav ul li {
+  margin: 20px;
+  cursor: pointer;
+}
+#nav ul li a {
+  text-decoration: none;
+  color: white;
+  transition: 0.4s;
+}
+#nav ul li a:hover {
+  border-bottom: 1px solid white;
+}
+/* main section  */
+section#main {
+  position: absolute;
+  background: #ffffff;
+  min-height: 100vh;
+  width: 100vw;
+  border-top-left-radius: 30px;
+  top: 0;
+  left: 0;
+  -webkit-transition: all 0.2s linear 0s;
+  transition: all 0.2s linear 0s;
+}
+.active {
+  top: 60px !important;
+  left: 200px !important;
+}
+
+#main nav {
+  display: flex;
+  padding: 25px;
+}
+#main .toggler {
+  font-size: 24px;
+  cursor: pointer;
+}
+#main nav h2 {
+  font-weight: 900;
+  text-transform: uppercase;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom: 2px solid black;
+}
+#main nav #time {
+  position: absolute;
+  right: 15px;
+  top: 32px;
+  font-size: 20px;
+}
+#main main .input {
+  position: absolute;
+  right: 0px;
+  margin: 10px 20px;
+}
+#main .inputValue {
+  position: relative;
+  width: 200px;
+  padding: 8px;
+  margin: 0px;
+  background-color: rgb(231, 231, 231);
+  border: 0;
+  border-radius: 5px;
+}
+#main input:valid {
+  border: 0;
+  outline: 0;
+}
+#main main .button {
+  /* position: absolute; */
+  outline: none;
+  background: black;
+  color: white;
+  margin: 5px;
+  padding: 8px;
+  border: 0;
+  border-radius: 5px;
+}
+#main main .temp {
+  /* z-index: -1;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;*/
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#main main #desc {
+  text-transform: capitalize;
+  font-size: 25px;
+  vertical-align: middle;
+}
+#main main #description i {
+  font-size: 40px;
+  vertical-align: bottom;
+}
+#main main .label {
+  display: flex;
+}
+#main main .label sup {
+  margin-top: 6px;
+  font-size: 13px;
+}
+#main main #name {
+  font-size: 42px;
+  font-weight: 900;
+}
+#main main #country {
+  font-size: 18px;
+  margin-top: 36px;
+  margin-left: 5px;
+}
+#main main #temp {
+  font-size: 50px;
+  position: relative;
+}
+#main main #temp sup {
+  font-size: 22px !important;
+  position: absolute !important;
+  top: 20px !important;
+  margin-left: 3px !important;
+}
+#main .more {
+  position: absolute;
+  margin-top: 30px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  /* background: #000; */
+}
+
+#main .more .row div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+#main .more sub {
+  font-size: 18px;
+}
+@media (min-width: 1000px) {
+  #main .more {
+    width: 65%;
+  }
+}
+@media (max-width: 768px) {
+  #main .inputValue {
+    width: 150px;
+    padding: 5px;
+    margin: 0px;
+  }
+  #main main .button {
+    padding: 6.5px;
+    font-size: 14px;
+    margin: 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .active {
+    left: 160px !important;
+  }
+}
