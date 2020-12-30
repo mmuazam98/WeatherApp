@@ -23,6 +23,9 @@ body {
   background: black;
   overflow-x: hidden;
 }
+.hidden {
+  display: none;
+}
 section#nav {
   background: #000;
   color: #ffffff;
@@ -129,6 +132,7 @@ section#main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: 0.4s;
 }
 #main main #desc {
   text-transform: capitalize;

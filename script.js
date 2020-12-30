@@ -19,6 +19,7 @@ $(document).ready(function () {
 });
 let button = $(".button");
 let inputValue = $(".inputValue");
+
 let Feel = $("#feel");
 let Humid = $("#humid");
 let Wind = $("#wind");
@@ -41,6 +42,32 @@ More.hide();
 Descriprion.hide();
 Marker.hide();
 Slash.hide();
+$(document).ready(function () {
+  $(window).on("resize", function (e) {
+    checkScreenSize();
+  });
+
+  checkScreenSize();
+
+  function checkScreenSize() {
+    var newWindowWidth = $(window).width();
+    if (newWindowWidth < 600) {
+      $(inputValue).focusin(function (e) {
+        e.preventDefault();
+        $(".temp").addClass("hidden");
+        $(".more").addClass("hidden");
+      });
+      $(inputValue).focusout(function (e) {
+        e.preventDefault();
+        $(".temp").removeClass("hidden");
+        $(".more").removeClass("hidden");
+      });
+    } else {
+      $(".temp").removeClass("hidden");
+      $(".more").removeClass("hidden");
+    }
+  }
+});
 
 function getDirection(direction) {
   if (direction > 348.75 || direction <= 11.25) {
