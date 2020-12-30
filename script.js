@@ -2,7 +2,15 @@ $(document).ready(function () {
   let nav = $("#nav");
   let main = $("#main");
   let toggler = $(".toggler");
-
+  let theme = $(".theme");
+  $(theme).click(function () {
+    document.body.classList.toggle("dark-theme");
+    if (document.body.classList.contains("dark-theme")) {
+      theme.html("Light Theme");
+    } else {
+      theme.html("Dark Theme");
+    }
+  });
   $(toggler).click(function (e) {
     e.preventDefault();
     $(main).toggleClass("active");
@@ -28,6 +36,7 @@ let Day = $("#day");
 let More = $(".more");
 let Time = $("#time");
 let Direction = $("#direction");
+let Img = $("#img");
 More.hide();
 Descriprion.hide();
 Marker.hide();
@@ -80,6 +89,8 @@ function setTime() {
   let Minutes = date.getMinutes();
   let Seconds = date.getSeconds();
   Seconds < 10 ? (Seconds = "0" + Seconds) : Seconds;
+  Minutes < 10 ? (Minutes = "0" + Minutes) : Minutes;
+
   // console.log(Hours + ":" + Minutes);
   Time.html(Hours + ":" + Minutes + ":" + Seconds);
 }
@@ -95,6 +106,7 @@ button.click(function (e) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
+      inputValue.val("");
       let max = Math.ceil(data.main.temp_min - 273.15);
       let min = Math.floor(data.main.temp_min - 273.15);
       let temp = Math.floor(data.main.temp - 273.15);
@@ -106,7 +118,8 @@ button.click(function (e) {
       let pressure = data.main.pressure;
       let wind = data.wind.speed;
       let direction = data.wind.deg;
-
+      let img = data.weather[0].icon;
+      Img.attr("src", `icons/${img}.png`);
       let dir = getDirection(direction);
       Direction.html(dir);
 
@@ -159,6 +172,8 @@ $(document).ready(function () {
             let humidity = data.main.humidity;
             let pressure = data.main.pressure;
             let wind = data.wind.speed;
+            let img = data.weather[0].icon;
+            Img.attr("src", `icons/${img}.png`);
             More.show();
             let direction = data.wind.deg;
 
@@ -197,6 +212,8 @@ $(document).ready(function () {
           let desc = data.weather[0].main;
           let name = data.name;
           let country = data.sys.country;
+          let img = data.weather[0].icon;
+          Img.attr("src", `icons/${img}.png`);
           let feel = Math.floor(data.main.feels_like - 273.15);
           let humidity = data.main.humidity;
           let pressure = data.main.pressure;

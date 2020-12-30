@@ -4,7 +4,21 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+  transition: background 0.3s ease-in, color 0.1s ease-out;
 }
+.light-theme {
+  --bg: #d9e4f5;
+  --img: linear-gradient(315deg, #d9e4f5 0%, #f5e3e6 74%);
+  --color: #000;
+}
+
+.dark-theme {
+  /* --bg: #272727; */
+  --bg: #000;
+  --img: linear-gradient(180deg, #2c3e50 10%, #000 74%);
+  --color: #fff;
+}
+
 body {
   background: black;
   overflow-x: hidden;
@@ -12,7 +26,7 @@ body {
 section#nav {
   background: #000;
   color: #ffffff;
-  height: 100vh;
+  max-height: 100vh;
   position: fixed;
   top: 100px;
   width: 200px;
@@ -37,7 +51,9 @@ section#nav {
 /* main section  */
 section#main {
   position: absolute;
-  background: #ffffff;
+  background: var(--bg);
+  color: var(--color);
+  background-image: var(--img);
   min-height: 100vh;
   width: 100vw;
   border-top-left-radius: 30px;
@@ -65,7 +81,7 @@ section#main {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid var(--color);
 }
 #main nav #time {
   position: absolute;
@@ -83,7 +99,7 @@ section#main {
   width: 200px;
   padding: 8px;
   margin: 0px;
-  background-color: rgb(231, 231, 231);
+  background-color: rgb(219, 212, 212);
   border: 0;
   border-radius: 5px;
 }
@@ -119,9 +135,9 @@ section#main {
   font-size: 25px;
   vertical-align: middle;
 }
-#main main #description i {
-  font-size: 40px;
-  vertical-align: bottom;
+#main main #description img {
+  height: 80px;
+  margin-left: -15px;
 }
 #main main .label {
   display: flex;
@@ -158,6 +174,11 @@ section#main {
   width: 80%;
   /* background: #000; */
 }
+@media screen and (min-aspect-ratio: 13/9) {
+  #main .more {
+    top: 70vh;
+  }
+}
 
 #main .more .row div {
   display: flex;
@@ -189,4 +210,6 @@ section#main {
   .active {
     left: 160px !important;
   }
+}
+@media (prefers-color-scheme: dark) {
 }
