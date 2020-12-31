@@ -210,7 +210,7 @@ section#main {
 }
 #main nav #time {
   position: absolute;
-  right: 20px;
+  right: 3vw;
   top: 32px;
   font-size: 20px;
 }
@@ -219,15 +219,7 @@ section#main {
   position: absolute;
   bottom: 5px;
 }
-@media (max-width: 400px) {
-  #main nav #time {
-    font-size: 16px;
-  }
-  #main nav #time sub {
-    font-size: 9px;
-    margin-left: 2px;
-  }
-}
+
 #main main .input {
   position: absolute;
   right: 0px;
@@ -302,12 +294,32 @@ table tr th {
     font-size: 14px;
     margin: 0;
   }
+  #main nav #time {
+    right: 4vw;
+  }
 }
 
 @media (max-width: 500px) {
   .active {
     left: 160px !important;
   }
+  #main nav #time {
+    right: 8vw;
+  }
 }
-@media (prefers-color-scheme: dark) {
+@media (max-width: 400px) {
+  #main nav #time {
+    font-size: 18px;
+    right: 6.3vw;
+  }
+  #main nav #time sub {
+    font-size: 9px;
+    margin-left: 2px;
+  }
+}
+@media (max-width: 360px) {
+  #main nav #time {
+    font-size: 18px;
+    right: 5.9vw;
+  }
 }
