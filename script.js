@@ -1,14 +1,34 @@
+let theme = $(".theme");
+let loader = $(".loader");
+let txt = $(".ml10");
+if (window.localStorage.theme == "dark") {
+  // alert("dark");
+  document.body.classList.remove("light-theme");
+  document.body.classList.add("dark-theme");
+  theme.html("Light Mode");
+} else {
+  // alert("light");
+  document.body.classList.add("light-theme");
+  document.body.classList.remove("dark-theme");
+  theme.html("Dark Mode");
+}
 $(document).ready(function () {
   let nav = $("#nav");
   let main = $("#main");
   let toggler = $(".toggler");
   let theme = $(".theme");
   $(theme).click(function () {
-    document.body.classList.toggle("dark-theme");
+    // document.body.classList.toggle("dark-theme");
     if (document.body.classList.contains("dark-theme")) {
-      theme.html("Light Theme");
+      theme.html("Dark Mode");
+      document.body.classList.add("light-theme");
+      document.body.classList.remove("dark-theme");
+      window.localStorage.theme = "light";
     } else {
-      theme.html("Dark Theme");
+      theme.html("Light Mode");
+      document.body.classList.add("dark-theme");
+      document.body.classList.remove("light-theme");
+      window.localStorage.theme = "dark";
     }
   });
   $(toggler).click(function (e) {
@@ -117,15 +137,19 @@ function setTime() {
   let Seconds = date.getSeconds();
   Seconds < 10 ? (Seconds = "0" + Seconds) : Seconds;
   Minutes < 10 ? (Minutes = "0" + Minutes) : Minutes;
+  Hours > 12 ? (Hours -= 12) : Hours;
+  Hours < 10 ? (Hours = "0" + Hours) : Hours;
 
   // console.log(Hours + ":" + Minutes);
-  Time.html(Hours + ":" + Minutes + ":" + Seconds);
+  Time.html(Hours + ":" + Minutes + ":" + Seconds + "<sub>am</sub>");
 }
 setTime();
 setInterval(setTime, 1000);
 
 // let api = `https://pro.openweathermap.org/data/2.5/forecast/climate?q=${inputValue},in&appid=b5f558462160da78810acd0bb997a9fd`;
 button.click(function (e) {
+  txt.show();
+  loader.show();
   e.preventDefault();
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${inputValue.val()}&appid=b5f558462160da78810acd0bb997a9fd`
@@ -133,6 +157,8 @@ button.click(function (e) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
+      txt.hide();
+      loader.hide();
       inputValue.val("");
       let max = Math.ceil(data.main.temp_min - 273.15);
       let min = Math.floor(data.main.temp_min - 273.15);
@@ -189,6 +215,9 @@ $(document).ready(function () {
           })
           .then((data) => {
             console.log(data);
+            loader.hide();
+            txt.hide();
+
             let max = Math.ceil(data.main.temp_min - 273.15);
             let min = Math.floor(data.main.temp_min - 273.15);
             let temp = Math.floor(data.main.temp - 273.15);
@@ -221,6 +250,15 @@ $(document).ready(function () {
             Desc.html(desc);
             Day.html(day);
           });
+        // fetch(
+        //   `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=b5f558462160da78810acd0bb997a9fd`
+        // )
+        //   .then((response) => response.json())
+        //   .then((data) => {
+        //     console.log(data);
+        //     inputValue.val("");
+        //   })
+        //   .catch((err) => alert("Wrong"));
       });
     } else {
       let long = window.localStorage.long;
@@ -233,6 +271,8 @@ $(document).ready(function () {
         })
         .then((data) => {
           console.log(data);
+          loader.hide();
+          txt.hide();
           let max = Math.ceil(data.main.temp_min - 273.15);
           let min = Math.floor(data.main.temp_min - 273.15);
           let temp = Math.floor(data.main.temp - 273.15);
