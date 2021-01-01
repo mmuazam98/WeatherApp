@@ -1,3 +1,13 @@
+Tech Stack used:
+- HTML CSS
+- jQuery
+- Fetch API
+- Bootstrap
+- Anime JS
+
+
+API used - https://openweathermap.org/ <br><br>
+Website - https://lucideusweather.netlify.app/
 <p align="left">
     <img width=45% src="Screenshots/1.png"> &ensp;
     <img width=45% src="Screenshots/2.png"> &ensp;
