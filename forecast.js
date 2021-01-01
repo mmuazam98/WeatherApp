@@ -1,6 +1,7 @@
 let theme = $(".theme");
 let loader = $(".loader");
 let txt = $(".ml10");
+
 if (window.localStorage.theme == "dark") {
   // alert("dark");
   document.body.classList.remove("light-theme");
@@ -12,6 +13,31 @@ if (window.localStorage.theme == "dark") {
   document.body.classList.remove("dark-theme");
   theme.html("Dark Mode");
 }
+
+function stars() {
+  let count = 200;
+  let scene = $("#nav");
+  let i = 0;
+  while (i < count) {
+    let star = document.createElement("i");
+    let x = Math.floor(Math.random() * window.innerWidth);
+    let y = Math.floor(Math.random() * window.innerHeight);
+    let duration = Math.random() * 10;
+    let size = Math.random() * 2;
+
+    star.style.left = x + "px";
+    star.style.top = y + "px";
+    star.style.width = 1 + size + "px";
+    star.style.height = 1 + size + "px";
+    star.style.animationDuration = 6 + duration + "s";
+    star.style.animationDelay = duration + "s";
+
+    scene.append(star);
+    i++;
+  }
+}
+stars();
+
 function getLocation() {
   let lng, lat;
   navigator.geolocation.getCurrentPosition((position) => {
@@ -22,12 +48,16 @@ function getLocation() {
 
   if (lat == null && window.localStorage.lat == null) {
     // alert("GPS not activated!");
+    let error = $("#err");
+    error.html("Please enable the GPS.");
     popup.addClass("show");
   } else {
     popup.removeClass("show");
   }
 }
+
 getLocation();
+
 $(document).ready(function () {
   let nav = $("#nav");
   let main = $("#main");
@@ -94,7 +124,6 @@ button.click(function (e) {
   e.preventDefault();
   txt.show();
   loader.show();
-  $("tbody").empty();
   fetch(
     `https://api.openweathermap.org/data/2.5/forecast?q=${inputValue.val()}&exclude=hourly&appid=${apiID}`
   )
@@ -110,6 +139,7 @@ button.click(function (e) {
       // }
       marker.show();
       let Name = data.city.name;
+      if (Name) $("tbody").empty();
       let con = data.city.country;
       country.html(con);
       city.html(Name);
@@ -139,16 +169,6 @@ button.click(function (e) {
         let max = Math.ceil(data.list[i].main.temp_max - 273.15);
         let min = Math.floor(data.list[i].main.temp_min - 273.15);
 
-        // $("#forecast").append(`
-        // <div class="forecast">
-        //   <div class="container">
-        //     <span id="date">${mon} ${day}</span>
-        //     <span id="day">Today</span>
-        //     <span id="sicon"><img src="icons/${icon}.png" alt="icon" /></span>
-        //     <span id="summary">${desc}</span>
-        //     <span id="max-min">${max}<sub>°C</sub> / ${min}<sub>°C</sub></span>
-        //   </div>
-        // </div>`);
         let x = $(`.date:last`).html();
         let y = `${mon} ${day}`;
         if (x != y) {
@@ -165,8 +185,9 @@ button.click(function (e) {
       }
     })
     .catch((err) => {
-      console.log(err);
-      alert("No match found.");
+      let error = $("#err");
+      error.html("No match found.");
+      $("#popup-wrapper").addClass("show");
     });
 });
 
@@ -248,7 +269,7 @@ $(document).ready(function () {
               }
             }
           })
-          .catch((err) => alert("Wrong"));
+          .catch((err) => alert("An error occured"));
       });
     } else {
       let long = window.localStorage.long;

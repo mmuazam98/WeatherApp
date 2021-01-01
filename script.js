@@ -167,12 +167,39 @@ function getLocation() {
 
   if (lat == null && window.localStorage.lat == null) {
     // alert("GPS not activated!");
+    let error = $("#err");
+    error.html("Please enable the GPS.");
+
     popup.addClass("show");
   } else {
     popup.removeClass("show");
   }
 }
 getLocation();
+
+function stars() {
+  let count = 200;
+  let scene = $("#nav");
+  let i = 0;
+  while (i < count) {
+    let star = document.createElement("i");
+    let x = Math.floor(Math.random() * window.innerWidth);
+    let y = Math.floor(Math.random() * window.innerHeight);
+    let duration = Math.random() * 10;
+    let size = Math.random() * 2;
+
+    star.style.left = x + "px";
+    star.style.top = y + "px";
+    star.style.width = 1 + size + "px";
+    star.style.height = 1 + size + "px";
+    star.style.animationDuration = 6 + duration + "s";
+    star.style.animationDelay = duration + "s";
+
+    scene.append(star);
+    i++;
+  }
+}
+stars();
 // setInterval(clickButton, 1000);
 // let api = `https://pro.openweathermap.org/data/2.5/forecast/climate?q=${inputValue},in&appid=b5f558462160da78810acd0bb997a9fd`;
 form.submit(function (e) {
@@ -221,7 +248,11 @@ form.submit(function (e) {
       Desc.html(desc);
       Day.html(day);
     })
-    .catch((err) => alert("Wrong"));
+    .catch((err) => {
+      let error = $("#err");
+      error.html("No match found.");
+      $("#popup-wrapper").addClass("show");
+    });
 });
 
 $(document).ready(function () {

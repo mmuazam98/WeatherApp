@@ -8,7 +8,9 @@
 }
 .light-theme {
   --bg: #d9e4f5;
-  --img: linear-gradient(315deg, #d9e4f5 0%, #f5e3e6 74%);
+  /* --img: linear-gradient(315deg, #d9e4f5 0%, #f5e3e6 74%); */
+  --img: linear-gradient(320deg, #85a3ce 0%, #f5dadf 74%);
+
   --color: #000;
 }
 
@@ -153,12 +155,35 @@ section#nav {
   color: #ffffff;
   max-height: 100vh;
   position: fixed;
-  top: 100px;
+  top: 0px;
   width: 200px;
   transition: 0.4s;
 }
+#nav i {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  background: #fff;
+  border-radius: 50%;
+  animation: animate linear infinite;
+}
+@keyframes animate {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  10%,
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(130px);
+  }
+}
 #nav ul {
   display: flex;
+  margin-top: 100px;
   flex-direction: column;
 }
 #nav ul li {
