@@ -133,16 +133,19 @@ let day = weekdays[date.getDay()];
 function setTime() {
   let date = new Date();
   let Hours = date.getHours();
+  let ampm;
+  Hours < 12 ? (ampm = "am") : (ampm = "pm");
   Hours == 0 ? (Hours = "12") : Hours;
   let Minutes = date.getMinutes();
   let Seconds = date.getSeconds();
   Seconds < 10 ? (Seconds = "0" + Seconds) : Seconds;
   Minutes < 10 ? (Minutes = "0" + Minutes) : Minutes;
+
   Hours > 12 ? (Hours -= 12) : Hours;
   Hours < 10 ? (Hours = "0" + Hours) : Hours;
 
   // console.log(Hours + ":" + Minutes);
-  Time.html(Hours + ":" + Minutes + ":" + Seconds + "<sub>am</sub>");
+  Time.html(Hours + ":" + Minutes + ":" + Seconds + `<sub>${ampm}</sub>`);
 }
 setTime();
 setInterval(setTime, 1000);
