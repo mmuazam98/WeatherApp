@@ -12,6 +12,22 @@ if (window.localStorage.theme == "dark") {
   document.body.classList.remove("dark-theme");
   theme.html("Dark Mode");
 }
+function getLocation() {
+  let lng, lat;
+  navigator.geolocation.getCurrentPosition((position) => {
+    lng = position.coords.longitude;
+    lat = position.coords.latitude;
+  });
+  var popup = $("#popup-wrapper");
+
+  if (lat == null && window.localStorage.lat == null) {
+    // alert("GPS not activated!");
+    popup.addClass("show");
+  } else {
+    popup.removeClass("show");
+  }
+}
+getLocation();
 $(document).ready(function () {
   let nav = $("#nav");
   let main = $("#main");
@@ -38,6 +54,7 @@ $(document).ready(function () {
     }
   });
 });
+
 let Time = $("#time");
 
 let date = new Date();
@@ -71,6 +88,8 @@ let Summary = $("#summary");
 let maxMin = $("#max-min");
 let city = $("#name");
 let country = $("#country");
+let marker = $("#marker");
+marker.hide();
 button.click(function (e) {
   e.preventDefault();
   txt.show();
@@ -89,6 +108,7 @@ button.click(function (e) {
       //   let timestamp = data.list[i].dt;
       //   console.log(timeConverter(timestamp));
       // }
+      marker.show();
       let Name = data.city.name;
       let con = data.city.country;
       country.html(con);
@@ -167,6 +187,8 @@ $(document).ready(function () {
         )
           .then((response) => response.json())
           .then((data) => {
+            marker.show();
+
             console.log(data);
             inputValue.val("");
             txt.hide();
@@ -238,6 +260,7 @@ $(document).ready(function () {
           return response.json();
         })
         .then((data) => {
+          marker.show();
           console.log(data);
           txt.hide();
           loader.hide();

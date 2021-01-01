@@ -157,6 +157,22 @@ function runScript(e) {
     return false;
   }
 }
+function getLocation() {
+  let lng, lat;
+  navigator.geolocation.getCurrentPosition((position) => {
+    lng = position.coords.longitude;
+    lat = position.coords.latitude;
+  });
+  var popup = $("#popup-wrapper");
+
+  if (lat == null && window.localStorage.lat == null) {
+    // alert("GPS not activated!");
+    popup.addClass("show");
+  } else {
+    popup.removeClass("show");
+  }
+}
+getLocation();
 // setInterval(clickButton, 1000);
 // let api = `https://pro.openweathermap.org/data/2.5/forecast/climate?q=${inputValue},in&appid=b5f558462160da78810acd0bb997a9fd`;
 form.submit(function (e) {

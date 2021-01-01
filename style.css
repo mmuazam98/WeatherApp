@@ -173,6 +173,88 @@ section#nav {
 #nav ul li a:hover {
   border-bottom: 1px solid white;
 }
+
+#popup button {
+  display: none;
+  border: none;
+  background: #333;
+  color: #fff;
+  padding: 10px 30px;
+  border-radius: 5px;
+  font-size: 17px;
+  cursor: pointer;
+  font-family: "Saira Semi Condensed", sans-serif;
+}
+#popup .popup-flex {
+  margin: 30px;
+}
+#popup .popup-container {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.3);
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(21, 17, 17, 0.61);
+  display: flex;
+  align-items: center;
+}
+#popup .popup-content {
+  position: relative;
+  background-color: var(--bg);
+  margin: auto;
+  padding: 20px;
+  width: 300px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+  align-items: center;
+  border-radius: 10px;
+}
+#popup .popup-content p {
+  font-size: 17px;
+  color: var(--color);
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  /* vertical-align: middle; */
+  line-height: 20px;
+}
+#popup .popup-content span {
+  color: rgb(122, 122, 122);
+  float: right;
+  font-size: 28px;
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  font-weight: bold;
+}
+#popup .popup-content span:hover,
+#popup .popup-content span:focus {
+  color: rgb(145, 145, 145);
+  text-decoration: none;
+  cursor: pointer;
+}
+#popup .show {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+}
+#popup .more-articles {
+  margin: 30px 30px 50px;
+  font-size: 20px;
+}
+#popup .more-articles a {
+  margin: 0 10px;
+  text-decoration: underline;
+}
+
 /* main section  */
 section#main {
   position: relative;
