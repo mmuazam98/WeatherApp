@@ -40,7 +40,7 @@
       </nav>
       <main>
         <form class="input">
-          <input type="text" class="inputValue" placeholder="Enter a city" />
+          <input type="text" class="inputValue" placeholder="Enter a city" onkeypress="return runScript(event)"  />
           <button class="button">Search</button>
         </form>
         <div class=" spin">
@@ -97,10 +97,7 @@
      
     </section>
     <script type="text/javascript">
-      var isAndroid = navigator.userAgent.toLowerCase().indexOf("android") > -1; //&& ua.indexOf("mobile");
-      if(isAndroid) {
-          document.write('<meta name="viewport" content="width=device-width,height='+window.innerHeight+', initial-scale=1.0">');
-      }
+     
       </script> 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"

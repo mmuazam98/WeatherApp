@@ -37,6 +37,7 @@ $(document).ready(function () {
     $(this).toggleClass("fa-times");
   });
 });
+
 let button = $(".button");
 let inputValue = $(".inputValue");
 
@@ -145,9 +146,20 @@ function setTime() {
 }
 setTime();
 setInterval(setTime, 1000);
-
+let form = $(".input");
+function clickButton() {
+  click_event = jQuery.Event("click");
+  $(Time).trigger(click_event);
+}
+function runScript(e) {
+  //See notes about 'which' and 'key'
+  if (e.keyCode == 13) {
+    return false;
+  }
+}
+// setInterval(clickButton, 1000);
 // let api = `https://pro.openweathermap.org/data/2.5/forecast/climate?q=${inputValue},in&appid=b5f558462160da78810acd0bb997a9fd`;
-button.click(function (e) {
+form.submit(function (e) {
   txt.show();
   loader.show();
   e.preventDefault();
@@ -156,6 +168,7 @@ button.click(function (e) {
   )
     .then((response) => response.json())
     .then((data) => {
+      clickButton();
       console.log(data);
       txt.hide();
       loader.hide();
