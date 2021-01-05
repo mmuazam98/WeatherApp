@@ -14,7 +14,7 @@ if (window.localStorage.theme == "dark") {
   theme.html("Dark Mode");
 }
 
-function stars() {
+let stars = () => {
   let count = 200;
   let scene = $("#nav");
   let i = 0;
@@ -35,10 +35,10 @@ function stars() {
     scene.append(star);
     i++;
   }
-}
+};
 stars();
 
-function getLocation() {
+let getLocation = () => {
   let lng, lat;
   navigator.geolocation.getCurrentPosition((position) => {
     lng = position.coords.longitude;
@@ -54,7 +54,7 @@ function getLocation() {
   } else {
     popup.removeClass("show");
   }
-}
+};
 
 getLocation();
 
@@ -90,7 +90,7 @@ let Time = $("#time");
 let date = new Date();
 let weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 let day = weekdays[date.getDay()];
-function setTime() {
+let setTime = () => {
   let date = new Date();
   let Hours = date.getHours();
   let ampm;
@@ -106,7 +106,7 @@ function setTime() {
 
   // console.log(Hours + ":" + Minutes);
   Time.html(Hours + ":" + Minutes + ":" + Seconds + `<sub>${ampm}</sub>`);
-}
+};
 setTime();
 setInterval(setTime, 1000);
 
@@ -125,6 +125,7 @@ let marker = $("#marker");
 marker.hide();
 button.click(function (e) {
   e.preventDefault();
+  $("main#forecast").hide();
   txt.show();
   loader.show();
   fetch(
@@ -140,6 +141,7 @@ button.click(function (e) {
       //   let timestamp = data.list[i].dt;
       //   console.log(timeConverter(timestamp));
       // }
+      $("main#forecast").show();
       marker.show();
       let Name = data.city.name;
       if (Name) $("tbody").empty();

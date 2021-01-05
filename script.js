@@ -70,7 +70,7 @@ $(document).ready(function () {
 
   checkScreenSize();
 
-  function checkScreenSize() {
+  let checkScreenSize = () => {
     var newWindowWidth = $(window).width();
     if (newWindowWidth < 600) {
       $(inputValue).focusin(function (e) {
@@ -87,10 +87,10 @@ $(document).ready(function () {
       $(".temp").removeClass("hidden");
       $(".more").removeClass("hidden");
     }
-  }
+  };
 });
 
-function getDirection(direction) {
+let getDirection = (direction) => {
   if (direction > 348.75 || direction <= 11.25) {
     direction = "N";
   } else if (direction > 11.25 && direction <= 33.75) {
@@ -125,12 +125,12 @@ function getDirection(direction) {
     direction = "NNW";
   }
   return direction;
-}
+};
 
 let date = new Date();
 let weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 let day = weekdays[date.getDay()];
-function setTime() {
+let setTime = () => {
   let date = new Date();
   let Hours = date.getHours();
   let ampm;
@@ -146,21 +146,21 @@ function setTime() {
 
   // console.log(Hours + ":" + Minutes);
   Time.html(Hours + ":" + Minutes + ":" + Seconds + `<sub>${ampm}</sub>`);
-}
+};
 setTime();
 setInterval(setTime, 1000);
 let form = $(".input");
-function clickButton() {
+let clickButton = () => {
   click_event = jQuery.Event("click");
   $(Time).trigger(click_event);
-}
-function runScript(e) {
+};
+let runScript = (e) => {
   //See notes about 'which' and 'key'
   if (e.keyCode == 13) {
     return false;
   }
-}
-function getLocation() {
+};
+let getLocation = () => {
   let lng, lat;
   navigator.geolocation.getCurrentPosition((position) => {
     lng = position.coords.longitude;
@@ -177,10 +177,10 @@ function getLocation() {
   } else {
     popup.removeClass("show");
   }
-}
+};
 getLocation();
 
-function stars() {
+let stars = () => {
   let count = 200;
   let scene = $("#nav");
   let i = 0;
@@ -201,7 +201,7 @@ function stars() {
     scene.append(star);
     i++;
   }
-}
+};
 stars();
 // setInterval(clickButton, 1000);
 // let api = `https://pro.openweathermap.org/data/2.5/forecast/climate?q=${inputValue},in&appid=b5f558462160da78810acd0bb997a9fd`;
