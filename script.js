@@ -64,12 +64,6 @@ Descriprion.hide();
 Marker.hide();
 Slash.hide();
 $(document).ready(function () {
-  $(window).on("resize", function (e) {
-    checkScreenSize();
-  });
-
-  checkScreenSize();
-
   let checkScreenSize = () => {
     var newWindowWidth = $(window).width();
     if (newWindowWidth < 600) {
@@ -88,6 +82,11 @@ $(document).ready(function () {
       $(".more").removeClass("hidden");
     }
   };
+  checkScreenSize();
+
+  $(window).on("resize", function (e) {
+    checkScreenSize();
+  });
 });
 
 let getDirection = (direction) => {
@@ -214,7 +213,7 @@ form.submit(function (e) {
   )
     .then((response) => response.json())
     .then((data) => {
-      clickButton();
+      // clickButton();
       console.log(data);
       txt.hide();
       loader.hide();
